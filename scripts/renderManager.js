@@ -26,4 +26,10 @@ class RenderManager {
 
         return false;
     }
+
+    isMouseInRect(rect) {
+        let mouseData = inputManager.mouse;
+
+        return this.isPointInRect([mouseData.x, mouseData.y], rect);
+    }
 }
