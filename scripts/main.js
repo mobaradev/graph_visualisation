@@ -19,6 +19,7 @@ canvas.addEventListener("click", () => inputManager.handleMouseClick())
 document.addEventListener("keypress", (event) => inputManager.handleKeyPress(event), false);
 
 setInterval(() => {
+    ProgramManager.renderManager.clearCanvas();
     //RenderManager.render()
     ProgramManager.scenes.main.handle();
 

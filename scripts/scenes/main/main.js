@@ -3,6 +3,9 @@ class Main extends Scene {
         super();
         this.panel = new Panel();
         this.graph = new Graph();
+        this.currentAction = null;
+
+        this.nodeSelected = null;
     }
     handle() {
         this.handleInput();
@@ -16,8 +19,8 @@ class Main extends Scene {
         this.renderNodes();
 
 
-        // render panel
-        this.panel.render();
+        // habdke panel
+        this.panel.handle();
 
         // draw "mouse cursor"
         ctx.fillStyle = 'rgb(100, 110, 220)';
@@ -29,6 +32,12 @@ class Main extends Scene {
         let nodes = this.graph.nodes;
 
         for (let i = 0; i < nodes.length; i++) {
+            if (this.nodeSelected === nodes[i]) {
+                ctx.fillStyle = 'rgb(200, 25, 25)';
+                ctx.fillRect(nodes[i].posX - 2, nodes[i].posY - 2, 24, 24);
+            }
+
+
             if (ProgramManager.renderManager.isPointInRect([inputManager.mouse.x, inputManager.mouse.y], [nodes[i].posX, nodes[i].posY, 20, 20])) {
                 ctx.fillStyle = 'rgb(30, 90, 200)';
             } else {
@@ -56,9 +65,43 @@ class Main extends Scene {
     }
 
     handleInput() {
-        if (inputManager.mouse.isPressed) {
-            let mouseData = inputManager.mouse;
-            this.graph.addNode(mouseData.x, mouseData.y);
+        if (inputManager.mouse.isPressed && this.isMouseInArea()) {
+            if (this.currentAction) this.currentAction();
+        }
+    }
+    
+    isMouseInArea() {
+        if (ProgramManager.renderManager.isMouseInRect([0, 64, canvas.width, canvas.height - 64])) {
+            return true;
+        } else return false;
+    }
+
+    selectNode() {
+        let mouseData = inputManager.mouse;
+        let nodes = this.graph.nodes;
+
+        for (let i = 0; i < nodes.length; i++) {
+            if (ProgramManager.renderManager.isMouseInRect([nodes[i].posX, nodes[i].posY, 20, 20])) {
+                this.nodeSelected = nodes[i];
+            }
+        }
+    }
+
+    addNode() {
+        let mouseData = inputManager.mouse;
+        this.graph.addNode(mouseData.x, mouseData.y);
+    }
+
+    addEdge() {
+        if (this.nodeSelected == null) return alert("Select node first!");
+
+        let firstNodeId = this.nodeSelected.id;
+
+        let nodes = this.graph.nodes;
+        for (let i = 0; i < nodes.length; i++) {
+            if (ProgramManager.renderManager.isMouseInRect([nodes[i].posX, nodes[i].posY, 20, 20])) {
+                this.graph.addEdge(firstNodeId, nodes[i].id);
+            }
         }
     }
 }
