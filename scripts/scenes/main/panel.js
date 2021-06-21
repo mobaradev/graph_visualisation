@@ -6,8 +6,14 @@ class Panel {
         this.buttons.push(selectNodeButton)
         let addNodeButton = new AddNodePanelButton(1, "Add node", "images/panel/add-button.png")
         this.buttons.push(addNodeButton)
-        let addEdgeutton = new AddEdgePanelButton(2, "Add edge", "images/panel/add-button.png")
-        this.buttons.push(addEdgeutton)
+        let addEdgeButton = new AddEdgePanelButton(2, "Add edge", "images/panel/add-button.png")
+        this.buttons.push(addEdgeButton)
+        let moveNodePanelButton = new MoveNodePanelButton(3, "Move node", "images/panel/add-button.png")
+        this.buttons.push(moveNodePanelButton)
+        let unpinAllNodeEdgesPanelButton = new UnpinAllNodeEdgesPanelButton(4, "Unpin edges", "images/panel/add-button.png")
+        this.buttons.push(unpinAllNodeEdgesPanelButton)
+        let deleteNodePanelButton = new DeleteNodePanelButton(5, "Delete node", "images/panel/add-button.png")
+        this.buttons.push(deleteNodePanelButton)
 
         this.buttonSelected = this.buttons[0];
         this.buttons[0].isSelected = true;
@@ -25,8 +31,6 @@ class Panel {
         for (let i = 0; i < this.buttons.length; i++) {
             this.buttons[i].render();
         }
-
-        //ctx.drawImage(img, 0, 0, 64, 64)
     }
 
     handleInput() {
@@ -57,7 +61,7 @@ class PanelButton {
         this.name = name;
 
         this.index = index
-        this.positionX = index * 64;
+        this.positionX = index * 72;
     }
 
     render() {
@@ -68,39 +72,64 @@ class PanelButton {
             else ctx.fillStyle = 'silver';
         }
 
-        ctx.fillRect(this.positionX, 0,64, 64);
+        ctx.fillRect(this.positionX, 0,72, 64);
         //ctx.drawImage(this.img, positionX, 0, 64, 64)
 
         // text
         ctx.font = "12px Arial";
         ctx.fillStyle = "black";
         ctx.textAlign = "center";
-        ctx.fillText(this.name, this.positionX + 64/2, 64 - 10);
+        ctx.fillText(this.name, this.positionX + 72/2, 64 - 10);
     }
 
     isMouseOverButton() {
-        return ProgramManager.renderManager.isMouseInRect([this.positionX, 0,64, 64]);
+        return ProgramManager.renderManager.isMouseInRect([this.positionX, 0,72, 64]);
     }
 
     onClickAction() {
         ProgramManager.scenes.main.currentAction = null;
+        ProgramManager.scenes.main.nodeSelected = null;
     }
 }
 
 class SelectNodePanelButton extends PanelButton {
     onClickAction() {
+        PanelButton.prototype.onClickAction();
         ProgramManager.scenes.main.currentAction = ProgramManager.scenes.main.selectNode;
     }
 }
 
 class AddNodePanelButton extends PanelButton {
     onClickAction() {
+        PanelButton.prototype.onClickAction();
         ProgramManager.scenes.main.currentAction = ProgramManager.scenes.main.addNode;
     }
 }
 
 class AddEdgePanelButton extends PanelButton {
     onClickAction() {
+        PanelButton.prototype.onClickAction();
         ProgramManager.scenes.main.currentAction = ProgramManager.scenes.main.addEdge;
+    }
+}
+
+class MoveNodePanelButton extends PanelButton {
+    onClickAction() {
+        PanelButton.prototype.onClickAction();
+        ProgramManager.scenes.main.currentAction = ProgramManager.scenes.main.moveNode;
+    }
+}
+
+class UnpinAllNodeEdgesPanelButton extends PanelButton {
+    onClickAction() {
+        PanelButton.prototype.onClickAction();
+        ProgramManager.scenes.main.currentAction = ProgramManager.scenes.main.unpinAllEdgesFromNode;
+    }
+}
+
+class DeleteNodePanelButton extends PanelButton {
+    onClickAction() {
+        PanelButton.prototype.onClickAction();
+        ProgramManager.scenes.main.currentAction = ProgramManager.scenes.main.deleteNode;
     }
 }

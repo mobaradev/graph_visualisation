@@ -1,11 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="cb0deacb-7654-415a-8544-08a5c3f4fcb0" name="Default Changelist" comment="Panel buttons sketch added">
+    <list default="true" id="cb0deacb-7654-415a-8544-08a5c3f4fcb0" name="Default Changelist" comment="+ Panel buttons base look and work&#10;+ Selecting node&#10;+ Adding edge">
+      <change afterPath="$PROJECT_DIR$/scripts/graph/complete.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scripts/graph/cubic.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scripts/scenes/main/sidebar.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scripts/scenes/main/sidepanel.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/graph/graph.js" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/graph/graph.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scripts/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/main.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scripts/scenes/main/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/scenes/main/main.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scripts/scenes/main/panel.js" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/scenes/main/panel.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/style.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,7 +85,8 @@
       <workItem from="1623860908106" duration="6815000" />
       <workItem from="1623930889351" duration="1817000" />
       <workItem from="1624031823570" duration="16660000" />
-      <workItem from="1624100859079" duration="14876000" />
+      <workItem from="1624100859079" duration="15047000" />
+      <workItem from="1624185175860" duration="33538000" />
     </task>
     <task id="LOCAL-00001" summary="Panel buttons sketch added">
       <created>1624051903879</created>
@@ -69,17 +95,41 @@
       <option name="project" value="LOCAL" />
       <updated>1624051903879</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="+ Panel buttons base look and work&#10;+ Selecting node&#10;+ Adding edge">
+      <created>1624150902515</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1624150902515</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Panel buttons sketch added" />
-    <option name="LAST_COMMIT_MESSAGE" value="Panel buttons sketch added" />
+    <MESSAGE value="+ Panel buttons base look and work&#10;+ Selecting node&#10;+ Adding edge" />
+    <option name="LAST_COMMIT_MESSAGE" value="+ Panel buttons base look and work&#10;+ Selecting node&#10;+ Adding edge" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="718" y="353" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1624218971090">
+      <screen x="36" y="27" width="1884" height="1053" />
+    </state>
+    <state x="718" y="353" key="#com.intellij.fileTypes.FileTypeChooser/36.27.1884.1053@36.27.1884.1053" timestamp="1624218971090" />
     <state x="685" y="391" width="586" height="339" key="Github.ShareDialog" timestamp="1624048931005">
       <screen x="36" y="27" width="1884" height="1053" />
     </state>
@@ -92,10 +142,10 @@
       <screen x="36" y="27" width="1884" height="1053" />
     </state>
     <state x="489" y="290" key="SettingsEditor/36.27.1884.1053@36.27.1884.1053" timestamp="1624104755452" />
-    <state x="578" y="290" key="Vcs.Push.Dialog.v2" timestamp="1624051908033">
+    <state x="578" y="290" key="Vcs.Push.Dialog.v2" timestamp="1624150907438">
       <screen x="36" y="27" width="1884" height="1053" />
     </state>
-    <state x="578" y="290" key="Vcs.Push.Dialog.v2/36.27.1884.1053@36.27.1884.1053" timestamp="1624051908033" />
+    <state x="578" y="290" key="Vcs.Push.Dialog.v2/36.27.1884.1053@36.27.1884.1053" timestamp="1624150907438" />
     <state x="641" y="259" width="672" height="678" key="search.everywhere.popup" timestamp="1624038641864">
       <screen x="36" y="27" width="1884" height="1053" />
     </state>

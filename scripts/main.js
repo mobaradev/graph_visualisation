@@ -1,8 +1,12 @@
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
 
+/*
 canvas.width  = 1024;
 canvas.height = 600;
+*/
+canvas.width  = window.innerWidth;
+canvas.height = window.innerHeight;
 
 inputManager = new InputManager();
 //inputManager.mouse = {x: 0, y: 0};

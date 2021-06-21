@@ -18,8 +18,31 @@ class Graph {
     }
 
     addEdge(firstNodeId, secondNodeId) {
+        if (firstNodeId == secondNodeId) return console.log("You cannot connect node with itself.")
         let newEdge = new GraphEdge(firstNodeId, secondNodeId);
+
+        if (this.isEdgeConnected(firstNodeId, secondNodeId)) return console.log("Edge already connected.");
+
+        newEdge.id = this.edgesAdded++;
         this.edges.push(newEdge);
+    }
+
+    deleteNode(nodeID) {
+        for (let i = 0; i < this.nodes.length; i++) {
+            if (this.nodes[i].id === nodeID) {
+                // remove this edge
+                this.nodes.splice(i, 1);
+            }
+        }
+    }
+
+    deleteEdge(edgeID) {
+        for (let i = 0; i < this.edges.length; i++) {
+            if (this.edges[i].id === edgeID) {
+                // remove this edge
+                this.edges.splice(i, 1);
+            }
+        }
     }
 
     getNodeFromId(id) {
@@ -29,6 +52,26 @@ class Graph {
             }
         }
         return null;
+    }
+
+    getEdgesConnectedToNodeId(id) {
+        let edgesConnected = [];
+        for (let i = 0; i < this.edges.length; i++) {
+            if (this.edges[i].firstNodeId === id || this.edges[i].secondNodeId === id) {
+                edgesConnected.push(this.edges[i]);
+            }
+        }
+        return edgesConnected;
+    }
+
+    isEdgeConnected(firstNodeId, secondNodeId) {
+        let ids = [firstNodeId, secondNodeId];
+        for (let i = 0; i < this.edges.length; i++) {
+            if (ids.includes(this.edges[i].firstNodeId) && ids.includes(this.edges[i].secondNodeId)) {
+                return true;
+            }
+        }
+        return false;
     }
 }
 
@@ -45,6 +88,9 @@ class GraphNode {
 }
 
 class GraphEdge {
+    id;
+    firstNodeId;
+    secondNodeId;
     constructor(firstNodeId, secondNodeId) {
         this.firstNodeId = firstNodeId;
         this.secondNodeId = secondNodeId;
