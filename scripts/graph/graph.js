@@ -73,6 +73,22 @@ class Graph {
         }
         return false;
     }
+
+    getAdjacentNodes(node) {
+        if (!node) return;
+        let adjacentNodes = [];
+        let edgesConnected = this.getEdgesConnectedToNodeId(node.id);
+
+        for (let i = 0; i < edgesConnected.length; i++) {
+            if (edgesConnected[i].firstNodeId === node.id) {
+                adjacentNodes.push(this.getNodeFromId(edgesConnected[i].secondNodeId));
+            } else {
+                adjacentNodes.push(this.getNodeFromId(edgesConnected[i].firstNodeId));
+            }
+        }
+
+        return adjacentNodes;
+    }
 }
 
 class GraphNode {

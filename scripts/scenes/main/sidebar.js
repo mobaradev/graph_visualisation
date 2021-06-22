@@ -16,6 +16,11 @@ class Sidebar {
         this.buttons.push(cubicButton)
         let completeButton = new SidebarCompleteButton(2);
         this.buttons.push(completeButton)
+        let connectedButton = new SidebarConnectedButton(3);
+        this.buttons.push(connectedButton)
+
+        let aboutButton = new SidebarAboutButton(-1);
+        this.buttons.push(aboutButton)
 
         this.buttonSelected = null;
     }
@@ -61,7 +66,11 @@ class SidebarButton {
     isSelected = false;
     constructor(index) {
         this.index = index
-        this.positionY = (index + 1) * 64;
+        if (index >= 0) {
+            this.positionY = (index + 1) * 64;
+        } else {
+            this.positionY = canvas.height - (64 * Math.abs(this.index));
+        }
     }
 
     render() {
@@ -132,5 +141,33 @@ class SidebarCompleteButton extends SidebarButton {
             SidebarButton.prototype.onClickAction();
         }
         ProgramManager.scenes.main.sidepanel.setContent("complete")
+    }
+}
+
+class SidebarConnectedButton extends SidebarButton {
+    constructor(index) {
+        super(index);
+        this.name = "Connected";
+    }
+
+    onClickAction() {
+        if (!ProgramManager.scenes.main.sidebar.isSidepanelOpened || ProgramManager.scenes.main.sidepanel.contentSelected.name == this.name) {
+            SidebarButton.prototype.onClickAction();
+        }
+        ProgramManager.scenes.main.sidepanel.setContent("connected")
+    }
+}
+
+class SidebarAboutButton extends SidebarButton {
+    constructor(index) {
+        super(index);
+        this.name = "About";
+    }
+
+    onClickAction() {
+        if (!ProgramManager.scenes.main.sidebar.isSidepanelOpened || ProgramManager.scenes.main.sidepanel.contentSelected.name == this.name) {
+            SidebarButton.prototype.onClickAction();
+        }
+        ProgramManager.scenes.main.sidepanel.setContent("about")
     }
 }

@@ -5,13 +5,14 @@ class Main extends Scene {
         this.sidebar = new Sidebar();
         this.sidepanel = new Sidepanel();
         this.graph = new Graph();
-        this.currentAction = null;
-        this.nextAction = null;
+        this.currentClickAction = null;
+        this.currentHoverAction = null;
 
         this.nodeSelected = null;
     }
     handle() {
         this.handleInput();
+        if (this.currentHoverAction != null) this.currentHoverAction();
         this.render();
     }
     render() {
@@ -19,8 +20,11 @@ class Main extends Scene {
         ctx.fillStyle = '#dedede';
         ctx.fillRect(0, 0, canvas.width, canvas.height);
 
+        this.renderEdges();
         this.renderNodes();
 
+        // render additional things
+        this.renderAdditional();
 
         // handle (top) panel
         this.panel.handle();
@@ -30,11 +34,6 @@ class Main extends Scene {
 
         // handle sidepanel
         this.sidepanel.handle();
-
-        // draw "mouse cursor"
-        ctx.fillStyle = 'rgb(100, 110, 220)';
-        ctx.fillRect(inputManager.mouse.x, inputManager.mouse.y, 50, 50);
-        this.renderEdges();
     }
 
     renderNodes() {
@@ -42,7 +41,7 @@ class Main extends Scene {
 
         for (let i = 0; i < nodes.length; i++) {
             if (this.nodeSelected === nodes[i]) {
-                ctx.fillStyle = 'rgb(200, 25, 25)';
+                ctx.fillStyle = 'rgb(200,25,25)';
                 ctx.fillRect(nodes[i].posX - 2, nodes[i].posY - 2, 24, 24);
             }
 
@@ -67,15 +66,21 @@ class Main extends Scene {
             let nodeA = this.graph.getNodeFromId(edges[i].firstNodeId);
             let nodeB = this.graph.getNodeFromId(edges[i].secondNodeId);
             ctx.beginPath();
-            ctx.moveTo(nodeA.posX, nodeA.posY);
-            ctx.lineTo(nodeB.posX, nodeB.posY);
+            ctx.moveTo(nodeA.posX + 12.5, nodeA.posY + 12.5);
+            ctx.lineTo(nodeB.posX + 12.5, nodeB.posY + 12.5);
             ctx.stroke();
+        }
+    }
+
+    renderAdditional() {
+        if (this.currentHoverAction == this.addEdgeHover) {
+            this.addEdgeHover();
         }
     }
 
     handleInput() {
         if (inputManager.mouse.isPressed && this.isMouseInArea()) {
-            if (this.currentAction) this.currentAction();
+            if (this.currentClickAction) this.currentClickAction();
         }
     }
     
@@ -106,35 +111,59 @@ class Main extends Scene {
     }
 
     addEdge() {
-        if (this.nodeSelected == null) return this.selectNode();
+        if (this.nodeSelected == null) {
+            this.selectNode();
+            this.currentHoverAction = this.addEdgeHover;
+            return;
+        }
 
         let firstNodeId = this.nodeSelected.id;
 
         let nodes = this.graph.nodes;
         for (let i = 0; i < nodes.length; i++) {
             if (ProgramManager.renderManager.isMouseInRect([nodes[i].posX, nodes[i].posY, 20, 20])) {
-
-
                 this.graph.addEdge(firstNodeId, nodes[i].id);
                 this.nodeSelected = null;
-            }
-        }
-
-        this.refreshSidepanelData();
-    }
-
-    moveNode() {
-        if (this.nodeSelected == null) return this.selectNode();
-        let mouseData = inputManager.mouse;
-
-        let nodes = this.graph.nodes;
-        for (let i = 0; i < nodes.length; i++) {
-            if (ProgramManager.renderManager.isMouseInRect([nodes[i].posX, nodes[i].posY, 20, 20])) {
-                this.nodeSelected = null;
+                this.currentHoverAction = null;
+                this.refreshSidepanelData();
                 return;
             }
         }
 
+        // user clicked in a free space so cease adding edge
+        this.currentHoverAction = null;
+        this.nodeSelected = null;
+    }
+
+    addEdgeHover() {
+        if (!this.nodeSelected) return;
+        let mouseData = inputManager.mouse;
+        ctx.strokeStyle = 'darkred';
+        ctx.lineWidth = 3;
+
+        let nodeA = this.graph.getNodeFromId(this.nodeSelected.id);
+        ctx.beginPath();
+        ctx.moveTo(nodeA.posX + 12.5, nodeA.posY + 12.5);
+        ctx.lineTo(mouseData.x, mouseData.y);
+        ctx.stroke();
+    }
+
+    moveNode() {
+        if (this.nodeSelected == null) {
+            this.selectNode();
+            this.currentHoverAction = this.moveNodeHover;
+            return;
+        }
+
+        if (inputManager.mouse.isPressed && this.isMouseInArea()) {
+            this.nodeSelected = null;
+            this.currentHoverAction = null;
+        }
+    }
+
+    moveNodeHover() {
+        if (!this.nodeSelected) return;
+        let mouseData = inputManager.mouse;
         this.nodeSelected.posX = mouseData.x;
         this.nodeSelected.posY = mouseData.y;
     }

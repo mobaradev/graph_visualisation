@@ -13,7 +13,9 @@ class Sidepanel {
         this.contents = {
             info: new SidepanelInfo(),
             cubic: new SidepanelCubic(),
-            complete: new SidepanelComplete()
+            complete: new SidepanelComplete(),
+            connected: new SidepanelConnected(),
+            about: new SidepanelAbout()
         }
 
         this.contentSelected = this.contents.cubic;
@@ -138,6 +140,52 @@ class SidepanelComplete extends SidepanelContent {
 
     action() {
         this.status = CompleteGraph.isGraphComplete(ProgramManager.scenes.main.graph);
+    }
+}
+
+class SidepanelConnected extends SidepanelContent {
+    constructor() {
+        super();
+        this.name = "Connected";
+        this.title = "Connected graph";
+        this.subtitle = "In mathematics and computer science, connectivity is one of the basic concepts of graph theory: it asks for the minimum number of elements (nodes or edges) that need to be removed to separate the remaining nodes into two or more isolated subgraphs.";
+        this.status = false;
+    }
+
+    render() {
+        super.render();
+
+        ctx.font = "bold 22px Arial";
+        ctx.fillStyle = "black";
+        ctx.textAlign = "left";
+        ctx.fillText((this.status ? "The graph is connected" : "The graph is not connected"), ProgramManager.scenes.main.sidepanel.positionX + 20, ProgramManager.scenes.main.sidepanel.positionY + 220);
+    }
+
+    action() {
+        this.status = ConnectedGraph.isGraphConnected(ProgramManager.scenes.main.graph);
+    }
+}
+
+class SidepanelAbout extends SidepanelContent {
+    constructor() {
+        super();
+        this.name = "About";
+        this.title = "About";
+        this.subtitle = "Program created by Michal Obara\n Gdańsk University of Technology \n s184262";
+    }
+
+    render() {
+        super.render();
+
+        ctx.font = "bold 16px Arial";
+        ctx.fillStyle = "black";
+        ctx.textAlign = "left";
+        ctx.fillText("Version 0.4", ProgramManager.scenes.main.sidepanel.positionX + 20, ProgramManager.scenes.main.sidepanel.positionY + 220);
+
+        ctx.font = "15px Arial";
+        ctx.mlFillText("Opened in " + navigator.userAgent + "\n\n Width: " + canvas.width + "\n Height: " + canvas.height, ProgramManager.scenes.main.sidepanel.positionX + 20, ProgramManager.scenes.main.sidepanel.positionY + 240, 350 - 40, 200, 'top', 'justify', 16);
+
+        ctx.drawImage(Resources.images.about.GUT, ProgramManager.scenes.main.sidepanel.positionX + 20, ProgramManager.scenes.main.sidepanel.positionY + ProgramManager.scenes.main.sidepanel.height - 180, 190*1.6, 52*1.6)
     }
 }
 

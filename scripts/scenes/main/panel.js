@@ -87,7 +87,8 @@ class PanelButton {
     }
 
     onClickAction() {
-        ProgramManager.scenes.main.currentAction = null;
+        ProgramManager.scenes.main.currentClickAction = null;
+        ProgramManager.scenes.main.currentHoverAction = null;
         ProgramManager.scenes.main.nodeSelected = null;
     }
 }
@@ -95,41 +96,41 @@ class PanelButton {
 class SelectNodePanelButton extends PanelButton {
     onClickAction() {
         PanelButton.prototype.onClickAction();
-        ProgramManager.scenes.main.currentAction = ProgramManager.scenes.main.selectNode;
+        ProgramManager.scenes.main.currentClickAction = ProgramManager.scenes.main.selectNode;
     }
 }
 
 class AddNodePanelButton extends PanelButton {
     onClickAction() {
         PanelButton.prototype.onClickAction();
-        ProgramManager.scenes.main.currentAction = ProgramManager.scenes.main.addNode;
+        ProgramManager.scenes.main.currentClickAction = ProgramManager.scenes.main.addNode;
     }
 }
 
 class AddEdgePanelButton extends PanelButton {
     onClickAction() {
         PanelButton.prototype.onClickAction();
-        ProgramManager.scenes.main.currentAction = ProgramManager.scenes.main.addEdge;
+        ProgramManager.scenes.main.currentClickAction = ProgramManager.scenes.main.addEdge;
     }
 }
 
 class MoveNodePanelButton extends PanelButton {
     onClickAction() {
         PanelButton.prototype.onClickAction();
-        ProgramManager.scenes.main.currentAction = ProgramManager.scenes.main.moveNode;
+        ProgramManager.scenes.main.currentClickAction = ProgramManager.scenes.main.moveNode;
     }
 }
 
 class UnpinAllNodeEdgesPanelButton extends PanelButton {
     onClickAction() {
         PanelButton.prototype.onClickAction();
-        ProgramManager.scenes.main.currentAction = ProgramManager.scenes.main.unpinAllEdgesFromNode;
+        ProgramManager.scenes.main.currentClickAction = ProgramManager.scenes.main.unpinAllEdgesFromNode;
     }
 }
 
 class DeleteNodePanelButton extends PanelButton {
     onClickAction() {
         PanelButton.prototype.onClickAction();
-        ProgramManager.scenes.main.currentAction = ProgramManager.scenes.main.deleteNode;
+        ProgramManager.scenes.main.currentClickAction = ProgramManager.scenes.main.deleteNode;
     }
 }
