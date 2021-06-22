@@ -19,19 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cb0deacb-7654-415a-8544-08a5c3f4fcb0" name="Default Changelist" comment="Added sidepanel with informations about graph and checking if is it cubic and complete. Some bugs fixed.">
-      <change afterPath="$PROJECT_DIR$/scripts/graph/connected.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/graph/cubic.js" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/graph/cubic.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/graph/graph.js" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/graph/graph.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/scenes/main/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/scenes/main/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/scenes/main/panel.js" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/scenes/main/panel.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/scenes/main/sidebar.js" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/scenes/main/sidebar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/scenes/main/sidepanel.js" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/scenes/main/sidepanel.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/style.css" afterDir="false" />
-    </list>
+    <list default="true" id="cb0deacb-7654-415a-8544-08a5c3f4fcb0" name="Default Changelist" comment="Added tabs: connected graph, about. Visual improves." />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -87,7 +75,7 @@
       <workItem from="1624031823570" duration="16660000" />
       <workItem from="1624100859079" duration="15047000" />
       <workItem from="1624185175860" duration="33876000" />
-      <workItem from="1624294603278" duration="17219000" />
+      <workItem from="1624294603278" duration="17563000" />
     </task>
     <task id="LOCAL-00001" summary="Panel buttons sketch added">
       <created>1624051903879</created>
@@ -110,7 +98,14 @@
       <option name="project" value="LOCAL" />
       <updated>1624236875331</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Added tabs: connected graph, about. Visual improves.">
+      <created>1624321988001</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1624321988001</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -132,7 +127,8 @@
     <MESSAGE value="Panel buttons sketch added" />
     <MESSAGE value="+ Panel buttons base look and work&#10;+ Selecting node&#10;+ Adding edge" />
     <MESSAGE value="Added sidepanel with informations about graph and checking if is it cubic and complete. Some bugs fixed." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added sidepanel with informations about graph and checking if is it cubic and complete. Some bugs fixed." />
+    <MESSAGE value="Added tabs: connected graph, about. Visual improves." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added tabs: connected graph, about. Visual improves." />
   </component>
   <component name="WindowStateProjectService">
     <state x="718" y="353" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1624218971090">
