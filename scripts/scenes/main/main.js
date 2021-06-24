@@ -127,7 +127,7 @@ class Main extends Scene {
 
     addNode() {
         let mouseData = inputManager.mouse;
-        this.graph.addNode((mouseData.x - this.delta.x) / this.scroll, (mouseData.y - this.delta.y) / this.scroll);
+        this.graph.addNode((mouseData.x / this.scroll) - this.delta.x, (mouseData.y / this.scroll) - this.delta.y);
 
         this.refreshSidepanelData();
     }
@@ -186,8 +186,8 @@ class Main extends Scene {
     moveNodeHover() {
         if (!this.nodeSelected) return;
         let mouseData = inputManager.mouse;
-        this.nodeSelected.posX = (mouseData.x - this.delta.x) / this.scroll;
-        this.nodeSelected.posY = (mouseData.y - this.delta.y) / this.scroll;
+        this.nodeSelected.posX = (mouseData.x / this.scroll) - this.delta.x;
+        this.nodeSelected.posY = (mouseData.y / this.scroll) - this.delta.y;
     }
 
     deleteNode() {

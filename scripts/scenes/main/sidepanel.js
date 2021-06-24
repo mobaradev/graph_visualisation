@@ -210,7 +210,7 @@ class SidepanelAbout extends SidepanelContent {
         ctx.font = "bold 16px Arial";
         ctx.fillStyle = "black";
         ctx.textAlign = "left";
-        ctx.fillText("Version 0.6", ProgramManager.scenes.main.sidepanel.positionX + 20, ProgramManager.scenes.main.sidepanel.positionY + 220);
+        ctx.fillText("Version 0.61", ProgramManager.scenes.main.sidepanel.positionX + 20, ProgramManager.scenes.main.sidepanel.positionY + 220);
 
         ctx.font = "15px Arial";
         ctx.mlFillText("Opened in " + navigator.userAgent + "\n\n Width: " + canvas.width + "\n Height: " + canvas.height, ProgramManager.scenes.main.sidepanel.positionX + 20, ProgramManager.scenes.main.sidepanel.positionY + 240, 350 - 40, 200, 'top', 'justify', 16);

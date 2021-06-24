@@ -19,14 +19,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cb0deacb-7654-415a-8544-08a5c3f4fcb0" name="Default Changelist" comment="Added Eulerian graph, added zoom">
-      <change afterPath="$PROJECT_DIR$/scripts/libraries/mltext.js" afterDir="false" />
+    <list default="true" id="cb0deacb-7654-415a-8544-08a5c3f4fcb0" name="Default Changelist" comment="Added max and min degree to info panel and possibility to move camera using keys WASD">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/graph/graph.js" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/graph/graph.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/inputManager.js" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/inputManager.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scripts/scenes/main/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/scenes/main/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/scenes/main/sidepanel.js" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/scenes/main/sidepanel.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,7 +81,7 @@
       <workItem from="1624294603278" duration="18026000" />
       <workItem from="1624455596104" duration="5229000" />
       <workItem from="1624482031192" duration="13281000" />
-      <workItem from="1624525578414" duration="4665000" />
+      <workItem from="1624525578414" duration="4975000" />
     </task>
     <task id="LOCAL-00001" summary="Panel buttons sketch added">
       <created>1624051903879</created>
@@ -137,7 +132,14 @@
       <option name="project" value="LOCAL" />
       <updated>1624500393033</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Added max and min degree to info panel and possibility to move camera using keys WASD">
+      <created>1624535073717</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1624535073717</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -161,7 +163,8 @@
     <MESSAGE value="Added sidepanel with informations about graph and checking if is it cubic and complete. Some bugs fixed." />
     <MESSAGE value="Added tabs: connected graph, about. Visual improves." />
     <MESSAGE value="Added Eulerian graph, added zoom" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added Eulerian graph, added zoom" />
+    <MESSAGE value="Added max and min degree to info panel and possibility to move camera using keys WASD" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added max and min degree to info panel and possibility to move camera using keys WASD" />
   </component>
   <component name="WindowStateProjectService">
     <state x="718" y="353" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1624218971090">
@@ -180,10 +183,10 @@
       <screen x="36" y="27" width="1884" height="1053" />
     </state>
     <state x="489" y="290" key="SettingsEditor/36.27.1884.1053@36.27.1884.1053" timestamp="1624104755452" />
-    <state x="578" y="290" key="Vcs.Push.Dialog.v2" timestamp="1624500397660">
+    <state x="578" y="290" key="Vcs.Push.Dialog.v2" timestamp="1624535077280">
       <screen x="36" y="27" width="1884" height="1053" />
     </state>
-    <state x="578" y="290" key="Vcs.Push.Dialog.v2/36.27.1884.1053@36.27.1884.1053" timestamp="1624500397660" />
+    <state x="578" y="290" key="Vcs.Push.Dialog.v2/36.27.1884.1053@36.27.1884.1053" timestamp="1624535077280" />
     <state x="642" y="254" key="run.anything.popup" timestamp="1624462013207">
       <screen x="36" y="27" width="1884" height="1053" />
     </state>
