@@ -99,6 +99,30 @@ class Graph {
 
         return adjacentNodes;
     }
+
+    getMaximumDegree() {
+        let degree = 0;
+        for (let i = 0; i < this.nodes.length; i++) {
+            if (this.getEdgesConnectedToNodeId(this.nodes[i].id).length > degree) {
+                degree = this.getEdgesConnectedToNodeId(this.nodes[i].id).length;
+            }
+        }
+
+        return degree;
+    }
+
+    getMinimumDegree() {
+        if (this.nodes.length === 0) return 0;
+        let degree = this.getEdgesConnectedToNodeId(this.nodes[0].id).length;
+        for (let i = 1; i < this.nodes.length; i++) {
+            if (this.getEdgesConnectedToNodeId(this.nodes[i].id).length < degree) {
+                degree = this.getEdgesConnectedToNodeId(this.nodes[i].id).length;
+            }
+            if (degree === 0) return 0; // degree cannot be lower than 0
+        }
+
+        return degree;
+    }
 }
 
 class GraphNode {

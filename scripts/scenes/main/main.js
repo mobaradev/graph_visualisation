@@ -47,18 +47,18 @@ class Main extends Scene {
         for (let i = 0; i < nodes.length; i++) {
             if (this.nodeSelected === nodes[i]) {
                 ctx.fillStyle = 'rgb(200,25,25)';
-                ctx.fillRect((nodes[i].posX - 2)  * this.scroll, (nodes[i].posY - 2) * this.scroll, 24 * this.scroll, 24 * this.scroll);
+                ctx.fillRect((nodes[i].posX + this.delta.x - 2)  * this.scroll, (nodes[i].posY + this.delta.y - 2) * this.scroll, 24 * this.scroll, 24 * this.scroll);
             }
 
 
-            if (ProgramManager.renderManager.isPointInRect([inputManager.mouse.x, inputManager.mouse.y], [nodes[i].posX * this.scroll, nodes[i].posY * this.scroll, 20 * this.scroll, 20 * this.scroll])) {
+            if (ProgramManager.renderManager.isPointInRect([inputManager.mouse.x, inputManager.mouse.y], [(nodes[i].posX + this.delta.x) * this.scroll, (nodes[i].posY + this.delta.y) * this.scroll, 20 * this.scroll, 20 * this.scroll])) {
                 ctx.fillStyle = 'rgb(30, 90, 200)';
             } else {
                 // default color
                 ctx.fillStyle = 'rgb(50, 110, 220)';
             }
 
-            ctx.fillRect(nodes[i].posX * this.scroll, nodes[i].posY * this.scroll, 20 * this.scroll, 20 * this.scroll);
+            ctx.fillRect((nodes[i].posX + this.delta.x) * this.scroll, (nodes[i].posY + this.delta.y) * this.scroll, 20 * this.scroll, 20 * this.scroll);
         }
     }
 
@@ -71,14 +71,14 @@ class Main extends Scene {
             let nodeA = this.graph.getNodeFromId(edges[i].firstNodeId);
             let nodeB = this.graph.getNodeFromId(edges[i].secondNodeId);
             ctx.beginPath();
-            ctx.moveTo((nodeA.posX + 12.5) * this.scroll, (nodeA.posY + 12.5) * this.scroll);
-            ctx.lineTo((nodeB.posX + 12.5) * this.scroll, (nodeB.posY + 12.5) * this.scroll);
+            ctx.moveTo((nodeA.posX + this.delta.x + 12.5) * this.scroll, (nodeA.posY + this.delta.y + 12.5) * this.scroll);
+            ctx.lineTo((nodeB.posX + this.delta.x + 12.5) * this.scroll, (nodeB.posY + this.delta.y + 12.5) * this.scroll);
             ctx.stroke();
         }
     }
 
     renderAdditional() {
-        if (this.currentHoverAction == this.addEdgeHover) {
+        if (this.currentHoverAction === this.addEdgeHover) {
             this.addEdgeHover();
         }
     }
@@ -94,6 +94,16 @@ class Main extends Scene {
                 this.scroll -= 0.1;
             }
         }
+
+        if (inputManager.keyboard.W) {
+            this.delta.y -= 25;
+        } else if (inputManager.keyboard.S) {
+            this.delta.y += 25;
+        } else if (inputManager.keyboard.A) {
+            this.delta.x -= 25;
+        } else if (inputManager.keyboard.D) {
+            this.delta.x += 25;
+        }
     }
 
     isMouseInArea() {
@@ -107,7 +117,7 @@ class Main extends Scene {
         let nodes = this.graph.nodes;
 
         for (let i = 0; i < nodes.length; i++) {
-            if (ProgramManager.renderManager.isMouseInRect([nodes[i].posX * this.scroll, nodes[i].posY * this.scroll, 20 * this.scroll, 20 * this.scroll])) {
+            if (ProgramManager.renderManager.isMouseInRect([(nodes[i].posX + this.delta.x) * this.scroll, (nodes[i].posY + this.delta.y) * this.scroll, 20 * this.scroll, 20 * this.scroll])) {
                 this.nodeSelected = nodes[i];
                 return;
             }
@@ -117,7 +127,7 @@ class Main extends Scene {
 
     addNode() {
         let mouseData = inputManager.mouse;
-        this.graph.addNode(mouseData.x / this.scroll, mouseData.y / this.scroll);
+        this.graph.addNode((mouseData.x - this.delta.x) / this.scroll, (mouseData.y - this.delta.y) / this.scroll);
 
         this.refreshSidepanelData();
     }
@@ -133,7 +143,7 @@ class Main extends Scene {
 
         let nodes = this.graph.nodes;
         for (let i = 0; i < nodes.length; i++) {
-            if (ProgramManager.renderManager.isMouseInRect([(nodes[i].posX) * this.scroll, (nodes[i].posY) * this.scroll, (20) * this.scroll, (20) * this.scroll])) {
+            if (ProgramManager.renderManager.isMouseInRect([(nodes[i].posX + this.delta.x) * this.scroll, (nodes[i].posY + this.delta.y) * this.scroll, (20) * this.scroll, (20) * this.scroll])) {
                 this.graph.addEdge(firstNodeId, nodes[i].id);
                 this.nodeSelected = null;
                 this.currentHoverAction = null;
@@ -155,7 +165,7 @@ class Main extends Scene {
 
         let nodeA = this.graph.getNodeFromId(this.nodeSelected.id);
         ctx.beginPath();
-        ctx.moveTo((nodeA.posX + 12.5) * this.scroll, (nodeA.posY + 12.5) * this.scroll);
+        ctx.moveTo((nodeA.posX + this.delta.x + 12.5) * this.scroll, (nodeA.posY + this.delta.y + 12.5) * this.scroll);
         ctx.lineTo(mouseData.x, mouseData.y);
         ctx.stroke();
     }
@@ -176,14 +186,14 @@ class Main extends Scene {
     moveNodeHover() {
         if (!this.nodeSelected) return;
         let mouseData = inputManager.mouse;
-        this.nodeSelected.posX = mouseData.x / this.scroll;
-        this.nodeSelected.posY = mouseData.y / this.scroll;
+        this.nodeSelected.posX = (mouseData.x - this.delta.x) / this.scroll;
+        this.nodeSelected.posY = (mouseData.y - this.delta.y) / this.scroll;
     }
 
     deleteNode() {
         let nodes = this.graph.nodes;
         for (let i = 0; i < nodes.length; i++) {
-            if (ProgramManager.renderManager.isMouseInRect([nodes[i].posX * this.scroll, nodes[i].posY * this.scroll, 20 * this.scroll, 20 * this.scroll])) {
+            if (ProgramManager.renderManager.isMouseInRect([(nodes[i].posX + this.delta.x) * this.scroll, (nodes[i].posY + this.delta.y) * this.scroll, 20 * this.scroll, 20 * this.scroll])) {
                 // unpin all edges
                 let edgesConnected = this.graph.getEdgesConnectedToNodeId(nodes[i].id);
                 for (let j = 0; j < edgesConnected.length; j++) {
@@ -206,7 +216,7 @@ class Main extends Scene {
 
         let nodes = this.graph.nodes;
         for (let i = 0; i < nodes.length; i++) {
-            if (ProgramManager.renderManager.isMouseInRect([nodes[i].posX * this.scroll, nodes[i].posY * this.scroll, 20 * this.scroll, 20 * this.scroll])) {
+            if (ProgramManager.renderManager.isMouseInRect([(nodes[i].posX + this.delta.x) * this.scroll, (nodes[i].posY + this.delta.y) * this.scroll, 20 * this.scroll, 20 * this.scroll])) {
                 let edge = this.graph.getEdgeBetweenNodes(this.nodeSelected.id, nodes[i].id);
                 if (edge) {
                     let edgeID = edge.id;
@@ -224,7 +234,7 @@ class Main extends Scene {
     unpinAllEdgesFromNode() {
         let nodes = this.graph.nodes;
         for (let i = 0; i < nodes.length; i++) {
-            if (ProgramManager.renderManager.isMouseInRect([nodes[i].posX * this.scroll, nodes[i].posY * this.scroll, 20 * this.scroll, 20 * this.scroll])) {
+            if (ProgramManager.renderManager.isMouseInRect([(nodes[i].posX + this.delta.x) * this.scroll, (nodes[i].posY + this.delta.y) * this.scroll, 20 * this.scroll, 20 * this.scroll])) {
                 // unpin all edges
                 let edgesConnected = this.graph.getEdgesConnectedToNodeId(nodes[i].id);
                 for (let j = 0; j < edgesConnected.length; j++) {

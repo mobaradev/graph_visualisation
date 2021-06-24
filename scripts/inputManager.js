@@ -7,6 +7,12 @@ class InputManager {
             isPressed: false,
             wheelDirection: 0
         }
+        this.keyboard = {
+            W: false,
+            A: false,
+            S: false,
+            D: false
+        }
     }
 
     handleMouseEvent(event) {
@@ -30,11 +36,26 @@ class InputManager {
     handleKeyPress(event) {
         console.log("test")
         console.log(event)
-        //this.mouse.isPr
+        if (event.key === "W" || event.key === "w") {
+            this.keyboard.W = true;
+        } else if (event.key === "A" || event.key === "a") {
+            this.keyboard.A = true;
+        } else if (event.key === "S" || event.key === "s") {
+            this.keyboard.S = true;
+        } else if (event.key === "D" || event.key === "d") {
+            this.keyboard.D = true;
+        }
     }
 
     clearKeys() {
         this.mouse.isPressed = false;
         this.mouse.wheelDirection = null;
+
+        this.keyboard = {
+            W: false,
+            A: false,
+            S: false,
+            D: false
+        }
     }
 }
