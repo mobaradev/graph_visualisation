@@ -30,6 +30,7 @@ Resources.images.about.GUT.src = "images/about/GUT.png";
 //ProgramManager.graph = new Graph();
 
 canvas.addEventListener("mousemove", (event) => inputManager.handleMouseEvent(event), false);
+canvas.addEventListener('wheel', (event) => inputManager.handleMouseEvent(event));
 canvas.addEventListener("click", () => inputManager.handleMouseClick())
 document.addEventListener("keypress", (event) => inputManager.handleKeyPress(event), false);
 

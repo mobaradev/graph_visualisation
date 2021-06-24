@@ -19,7 +19,18 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cb0deacb-7654-415a-8544-08a5c3f4fcb0" name="Default Changelist" comment="Added tabs: connected graph, about. Visual improves." />
+    <list default="true" id="cb0deacb-7654-415a-8544-08a5c3f4fcb0" name="Default Changelist" comment="Added tabs: connected graph, about. Visual improves.">
+      <change afterPath="$PROJECT_DIR$/scripts/graph/еulerian.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/graph/graph.js" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/graph/graph.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/inputManager.js" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/inputManager.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/scenes/main/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/scenes/main/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/scenes/main/panel.js" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/scenes/main/panel.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/scenes/main/sidebar.js" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/scenes/main/sidebar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/scenes/main/sidepanel.js" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/scenes/main/sidepanel.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -75,7 +86,9 @@
       <workItem from="1624031823570" duration="16660000" />
       <workItem from="1624100859079" duration="15047000" />
       <workItem from="1624185175860" duration="33876000" />
-      <workItem from="1624294603278" duration="17563000" />
+      <workItem from="1624294603278" duration="18026000" />
+      <workItem from="1624455596104" duration="5229000" />
+      <workItem from="1624482031192" duration="13235000" />
     </task>
     <task id="LOCAL-00001" summary="Panel buttons sketch added">
       <created>1624051903879</created>
@@ -105,7 +118,21 @@
       <option name="project" value="LOCAL" />
       <updated>1624321988001</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Added tabs: connected graph, about. Visual improves.">
+      <created>1624322488681</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1624322488681</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Added tabs: connected graph, about. Visual improves.">
+      <created>1624322492487</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1624322492487</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -147,10 +174,14 @@
       <screen x="36" y="27" width="1884" height="1053" />
     </state>
     <state x="489" y="290" key="SettingsEditor/36.27.1884.1053@36.27.1884.1053" timestamp="1624104755452" />
-    <state x="578" y="290" key="Vcs.Push.Dialog.v2" timestamp="1624236879878">
+    <state x="578" y="290" key="Vcs.Push.Dialog.v2" timestamp="1624322495824">
       <screen x="36" y="27" width="1884" height="1053" />
     </state>
-    <state x="578" y="290" key="Vcs.Push.Dialog.v2/36.27.1884.1053@36.27.1884.1053" timestamp="1624236879878" />
+    <state x="578" y="290" key="Vcs.Push.Dialog.v2/36.27.1884.1053@36.27.1884.1053" timestamp="1624322495824" />
+    <state x="642" y="254" key="run.anything.popup" timestamp="1624462013207">
+      <screen x="36" y="27" width="1884" height="1053" />
+    </state>
+    <state x="642" y="254" key="run.anything.popup/36.27.1884.1053@36.27.1884.1053" timestamp="1624462013207" />
     <state x="641" y="259" width="672" height="678" key="search.everywhere.popup" timestamp="1624038641864">
       <screen x="36" y="27" width="1884" height="1053" />
     </state>

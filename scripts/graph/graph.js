@@ -64,6 +64,16 @@ class Graph {
         return edgesConnected;
     }
 
+    getEdgeBetweenNodes(firstNodeId, secondNodeId) {
+        let ids = [firstNodeId, secondNodeId];
+        for (let i = 0; i < this.edges.length; i++) {
+            if (ids.includes(this.edges[i].firstNodeId) && ids.includes(this.edges[i].secondNodeId)) {
+                return this.edges[i];
+            }
+        }
+        return null;
+    }
+
     isEdgeConnected(firstNodeId, secondNodeId) {
         let ids = [firstNodeId, secondNodeId];
         for (let i = 0; i < this.edges.length; i++) {

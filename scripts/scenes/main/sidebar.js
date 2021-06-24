@@ -18,6 +18,9 @@ class Sidebar {
         this.buttons.push(completeButton)
         let connectedButton = new SidebarConnectedButton(3);
         this.buttons.push(connectedButton)
+        let eulerianButton = new SidebarEulerianButton(4);
+        this.buttons.push(eulerianButton)
+
 
         let aboutButton = new SidebarAboutButton(-1);
         this.buttons.push(aboutButton)
@@ -155,6 +158,20 @@ class SidebarConnectedButton extends SidebarButton {
             SidebarButton.prototype.onClickAction();
         }
         ProgramManager.scenes.main.sidepanel.setContent("connected")
+    }
+}
+
+class SidebarEulerianButton extends SidebarButton {
+    constructor(index) {
+        super(index);
+        this.name = "Eulerian";
+    }
+
+    onClickAction() {
+        if (!ProgramManager.scenes.main.sidebar.isSidepanelOpened || ProgramManager.scenes.main.sidepanel.contentSelected.name == this.name) {
+            SidebarButton.prototype.onClickAction();
+        }
+        ProgramManager.scenes.main.sidepanel.setContent("eulerian")
     }
 }
 

@@ -10,10 +10,13 @@ class Panel {
         this.buttons.push(addEdgeButton)
         let moveNodePanelButton = new MoveNodePanelButton(3, "Move node", "images/panel/add-button.png")
         this.buttons.push(moveNodePanelButton)
-        let unpinAllNodeEdgesPanelButton = new UnpinAllNodeEdgesPanelButton(4, "Unpin edges", "images/panel/add-button.png")
-        this.buttons.push(unpinAllNodeEdgesPanelButton)
-        let deleteNodePanelButton = new DeleteNodePanelButton(5, "Delete node", "images/panel/add-button.png")
+        let deleteNodePanelButton = new DeleteNodePanelButton(4, "Delete node", "images/panel/add-button.png")
         this.buttons.push(deleteNodePanelButton)
+        let deleteEdgePanelButton = new DeleteEdgePanelButton(5, "Delete edge", "images/panel/add-button.png")
+        this.buttons.push(deleteEdgePanelButton)
+        let unpinAllNodeEdgesPanelButton = new UnpinAllNodeEdgesPanelButton(6, "Unpin edges", "images/panel/add-button.png")
+        this.buttons.push(unpinAllNodeEdgesPanelButton)
+
 
         this.buttonSelected = this.buttons[0];
         this.buttons[0].isSelected = true;
@@ -61,7 +64,7 @@ class PanelButton {
         this.name = name;
 
         this.index = index
-        this.positionX = index * 72;
+        this.positionX = index * 82;
     }
 
     render() {
@@ -72,18 +75,18 @@ class PanelButton {
             else ctx.fillStyle = 'silver';
         }
 
-        ctx.fillRect(this.positionX, 0,72, 64);
+        ctx.fillRect(this.positionX, 0,82, 64);
         //ctx.drawImage(this.img, positionX, 0, 64, 64)
 
         // text
         ctx.font = "12px Arial";
         ctx.fillStyle = "black";
         ctx.textAlign = "center";
-        ctx.fillText(this.name, this.positionX + 72/2, 64 - 10);
+        ctx.fillText(this.name, this.positionX + 82/2, 64 - 10);
     }
 
     isMouseOverButton() {
-        return ProgramManager.renderManager.isMouseInRect([this.positionX, 0,72, 64]);
+        return ProgramManager.renderManager.isMouseInRect([this.positionX, 0,82, 64]);
     }
 
     onClickAction() {
@@ -121,6 +124,20 @@ class MoveNodePanelButton extends PanelButton {
     }
 }
 
+class DeleteNodePanelButton extends PanelButton {
+    onClickAction() {
+        PanelButton.prototype.onClickAction();
+        ProgramManager.scenes.main.currentClickAction = ProgramManager.scenes.main.deleteNode;
+    }
+}
+
+class DeleteEdgePanelButton extends PanelButton {
+    onClickAction() {
+        PanelButton.prototype.onClickAction();
+        ProgramManager.scenes.main.currentClickAction = ProgramManager.scenes.main.deleteEdge;
+    }
+}
+
 class UnpinAllNodeEdgesPanelButton extends PanelButton {
     onClickAction() {
         PanelButton.prototype.onClickAction();
@@ -128,9 +145,3 @@ class UnpinAllNodeEdgesPanelButton extends PanelButton {
     }
 }
 
-class DeleteNodePanelButton extends PanelButton {
-    onClickAction() {
-        PanelButton.prototype.onClickAction();
-        ProgramManager.scenes.main.currentClickAction = ProgramManager.scenes.main.deleteNode;
-    }
-}

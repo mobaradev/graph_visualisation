@@ -9,6 +9,11 @@ class Main extends Scene {
         this.currentHoverAction = null;
 
         this.nodeSelected = null;
+        this.scroll = 1.0;
+        this.delta = {
+            x: 0,
+            y: 0
+        }
     }
     handle() {
         this.handleInput();
@@ -42,32 +47,32 @@ class Main extends Scene {
         for (let i = 0; i < nodes.length; i++) {
             if (this.nodeSelected === nodes[i]) {
                 ctx.fillStyle = 'rgb(200,25,25)';
-                ctx.fillRect(nodes[i].posX - 2, nodes[i].posY - 2, 24, 24);
+                ctx.fillRect((nodes[i].posX - 2)  * this.scroll, (nodes[i].posY - 2) * this.scroll, 24 * this.scroll, 24 * this.scroll);
             }
 
 
-            if (ProgramManager.renderManager.isPointInRect([inputManager.mouse.x, inputManager.mouse.y], [nodes[i].posX, nodes[i].posY, 20, 20])) {
+            if (ProgramManager.renderManager.isPointInRect([inputManager.mouse.x, inputManager.mouse.y], [nodes[i].posX * this.scroll, nodes[i].posY * this.scroll, 20 * this.scroll, 20 * this.scroll])) {
                 ctx.fillStyle = 'rgb(30, 90, 200)';
             } else {
                 // default color
                 ctx.fillStyle = 'rgb(50, 110, 220)';
             }
 
-            ctx.fillRect(nodes[i].posX, nodes[i].posY, 20, 20);
+            ctx.fillRect(nodes[i].posX * this.scroll, nodes[i].posY * this.scroll, 20 * this.scroll, 20 * this.scroll);
         }
     }
 
     renderEdges() {
         let edges = this.graph.edges;
         ctx.strokeStyle = 'red';
-        ctx.lineWidth = 5;
+        ctx.lineWidth = 5 * this.scroll;
 
         for (let i = 0; i < edges.length; i++) {
             let nodeA = this.graph.getNodeFromId(edges[i].firstNodeId);
             let nodeB = this.graph.getNodeFromId(edges[i].secondNodeId);
             ctx.beginPath();
-            ctx.moveTo(nodeA.posX + 12.5, nodeA.posY + 12.5);
-            ctx.lineTo(nodeB.posX + 12.5, nodeB.posY + 12.5);
+            ctx.moveTo((nodeA.posX + 12.5) * this.scroll, (nodeA.posY + 12.5) * this.scroll);
+            ctx.lineTo((nodeB.posX + 12.5) * this.scroll, (nodeB.posY + 12.5) * this.scroll);
             ctx.stroke();
         }
     }
@@ -82,8 +87,15 @@ class Main extends Scene {
         if (inputManager.mouse.isPressed && this.isMouseInArea()) {
             if (this.currentClickAction) this.currentClickAction();
         }
+        if (inputManager.mouse.wheelDirection) {
+            if (inputManager.mouse.wheelDirection === "up") {
+                this.scroll += 0.1;
+            } else {
+                this.scroll -= 0.1;
+            }
+        }
     }
-    
+
     isMouseInArea() {
         if (ProgramManager.renderManager.isMouseInRect([0, 64, ProgramManager.scenes.main.sidebar.positionX, canvas.height - 64])) {
             return true;
@@ -95,7 +107,7 @@ class Main extends Scene {
         let nodes = this.graph.nodes;
 
         for (let i = 0; i < nodes.length; i++) {
-            if (ProgramManager.renderManager.isMouseInRect([nodes[i].posX, nodes[i].posY, 20, 20])) {
+            if (ProgramManager.renderManager.isMouseInRect([nodes[i].posX * this.scroll, nodes[i].posY * this.scroll, 20 * this.scroll, 20 * this.scroll])) {
                 this.nodeSelected = nodes[i];
                 return;
             }
@@ -105,7 +117,7 @@ class Main extends Scene {
 
     addNode() {
         let mouseData = inputManager.mouse;
-        this.graph.addNode(mouseData.x, mouseData.y);
+        this.graph.addNode(mouseData.x / this.scroll, mouseData.y / this.scroll);
 
         this.refreshSidepanelData();
     }
@@ -121,7 +133,7 @@ class Main extends Scene {
 
         let nodes = this.graph.nodes;
         for (let i = 0; i < nodes.length; i++) {
-            if (ProgramManager.renderManager.isMouseInRect([nodes[i].posX, nodes[i].posY, 20, 20])) {
+            if (ProgramManager.renderManager.isMouseInRect([(nodes[i].posX) * this.scroll, (nodes[i].posY) * this.scroll, (20) * this.scroll, (20) * this.scroll])) {
                 this.graph.addEdge(firstNodeId, nodes[i].id);
                 this.nodeSelected = null;
                 this.currentHoverAction = null;
@@ -143,7 +155,7 @@ class Main extends Scene {
 
         let nodeA = this.graph.getNodeFromId(this.nodeSelected.id);
         ctx.beginPath();
-        ctx.moveTo(nodeA.posX + 12.5, nodeA.posY + 12.5);
+        ctx.moveTo((nodeA.posX + 12.5) * this.scroll, (nodeA.posY + 12.5) * this.scroll);
         ctx.lineTo(mouseData.x, mouseData.y);
         ctx.stroke();
     }
@@ -164,29 +176,14 @@ class Main extends Scene {
     moveNodeHover() {
         if (!this.nodeSelected) return;
         let mouseData = inputManager.mouse;
-        this.nodeSelected.posX = mouseData.x;
-        this.nodeSelected.posY = mouseData.y;
-    }
-
-    unpinAllEdgesFromNode() {
-        let nodes = this.graph.nodes;
-        for (let i = 0; i < nodes.length; i++) {
-            if (ProgramManager.renderManager.isMouseInRect([nodes[i].posX, nodes[i].posY, 20, 20])) {
-                // unpin all edges
-                let edgesConnected = this.graph.getEdgesConnectedToNodeId(nodes[i].id);
-                for (let j = 0; j < edgesConnected.length; j++) {
-                    this.graph.deleteEdge(edgesConnected[j].id);
-                }
-            }
-        }
-
-        this.refreshSidepanelData();
+        this.nodeSelected.posX = mouseData.x / this.scroll;
+        this.nodeSelected.posY = mouseData.y / this.scroll;
     }
 
     deleteNode() {
         let nodes = this.graph.nodes;
         for (let i = 0; i < nodes.length; i++) {
-            if (ProgramManager.renderManager.isMouseInRect([nodes[i].posX, nodes[i].posY, 20, 20])) {
+            if (ProgramManager.renderManager.isMouseInRect([nodes[i].posX * this.scroll, nodes[i].posY * this.scroll, 20 * this.scroll, 20 * this.scroll])) {
                 // unpin all edges
                 let edgesConnected = this.graph.getEdgesConnectedToNodeId(nodes[i].id);
                 for (let j = 0; j < edgesConnected.length; j++) {
@@ -195,6 +192,44 @@ class Main extends Scene {
 
                 // and then remove node
                 this.graph.deleteNode(nodes[i].id);
+            }
+        }
+
+        this.refreshSidepanelData();
+    }
+
+    deleteEdge() {
+        if (this.nodeSelected == null) {
+            this.selectNode();
+            return;
+        }
+
+        let nodes = this.graph.nodes;
+        for (let i = 0; i < nodes.length; i++) {
+            if (ProgramManager.renderManager.isMouseInRect([nodes[i].posX * this.scroll, nodes[i].posY * this.scroll, 20 * this.scroll, 20 * this.scroll])) {
+                let edge = this.graph.getEdgeBetweenNodes(this.nodeSelected.id, nodes[i].id);
+                if (edge) {
+                    let edgeID = edge.id;
+                    this.graph.deleteEdge(edgeID);
+                    this.nodeSelected = null;
+                    return;
+                } else console.log("Error - no edge found!");
+            }
+        }
+
+        // if clicked not in node, then reset the node selected
+        this.nodeSelected = null;
+    }
+
+    unpinAllEdgesFromNode() {
+        let nodes = this.graph.nodes;
+        for (let i = 0; i < nodes.length; i++) {
+            if (ProgramManager.renderManager.isMouseInRect([nodes[i].posX * this.scroll, nodes[i].posY * this.scroll, 20 * this.scroll, 20 * this.scroll])) {
+                // unpin all edges
+                let edgesConnected = this.graph.getEdgesConnectedToNodeId(nodes[i].id);
+                for (let j = 0; j < edgesConnected.length; j++) {
+                    this.graph.deleteEdge(edgesConnected[j].id);
+                }
             }
         }
 

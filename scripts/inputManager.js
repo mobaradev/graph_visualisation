@@ -4,14 +4,23 @@ class InputManager {
         this.mouse = {
             x: 0,
             y: 0,
-            isPressed: false
+            isPressed: false,
+            wheelDirection: 0
         }
     }
 
     handleMouseEvent(event) {
-        this.mouse.x = event.pageX;
-        this.mouse.y = event.pageY;
-
+        if (event.type === "mousemove") {
+            this.mouse.x = event.pageX;
+            this.mouse.y = event.pageY;
+        }  else if (event.type === "wheel") {
+            console.log(event.deltaY)
+            if (event.deltaY > 0) {
+                this.mouse.wheelDirection = "down";
+            } else {
+                this.mouse.wheelDirection = "up";
+            }
+        }
     }
 
     handleMouseClick() {
@@ -26,5 +35,6 @@ class InputManager {
 
     clearKeys() {
         this.mouse.isPressed = false;
+        this.mouse.wheelDirection = null;
     }
 }

@@ -15,6 +15,7 @@ class Sidepanel {
             cubic: new SidepanelCubic(),
             complete: new SidepanelComplete(),
             connected: new SidepanelConnected(),
+            eulerian: new SidepanelEulerian(),
             about: new SidepanelAbout()
         }
 
@@ -163,6 +164,29 @@ class SidepanelConnected extends SidepanelContent {
 
     action() {
         this.status = ConnectedGraph.isGraphConnected(ProgramManager.scenes.main.graph);
+    }
+}
+
+class SidepanelEulerian extends SidepanelContent {
+    constructor() {
+        super();
+        this.name = "Eulerian";
+        this.title = "Eulerian graph";
+        this.subtitle = "In graph theory, an Eulerian trail (or Eulerian path) is a trail in a finite graph that visits every edge exactly once (allowing for revisiting vertices).";
+        this.status = false;
+    }
+
+    render() {
+        super.render();
+
+        ctx.font = "bold 22px Arial";
+        ctx.fillStyle = "black";
+        ctx.textAlign = "left";
+        ctx.fillText((this.status ? "The graph is eulerian" : "The graph is not eulerian"), ProgramManager.scenes.main.sidepanel.positionX + 20, ProgramManager.scenes.main.sidepanel.positionY + 220);
+    }
+
+    action() {
+        this.status = EulerianGraph.isGraphEulerian(ProgramManager.scenes.main.graph);
     }
 }
 
