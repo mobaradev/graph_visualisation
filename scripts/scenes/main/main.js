@@ -7,6 +7,7 @@ class Main extends Scene {
         this.graph = new Graph();
         this.currentClickAction = null;
         this.currentHoverAction = null;
+        this.nodeStyle = "circle";
 
         this.nodeSelected = null;
         this.scroll = 1.0;
@@ -47,8 +48,15 @@ class Main extends Scene {
         for (let i = 0; i < nodes.length; i++) {
             if (this.nodeSelected === nodes[i]) {
                 ctx.fillStyle = 'rgb(200,25,25)';
-                ctx.fillRect((nodes[i].posX + this.delta.x - 2)  * this.scroll, (nodes[i].posY + this.delta.y - 2) * this.scroll, 24 * this.scroll, 24 * this.scroll);
+                if (this.nodeStyle === "rect") ctx.fillRect((nodes[i].posX + this.delta.x - 2)  * this.scroll, (nodes[i].posY + this.delta.y - 2) * this.scroll, 24 * this.scroll, 24 * this.scroll);
+                else if (this.nodeStyle === "circle") {
+                    let radius = 12;
+                    ctx.beginPath();
+                    ctx.arc((nodes[i].posX + this.delta.x - 4 + radius)  * this.scroll, (nodes[i].posY + this.delta.y - 4 + radius) * this.scroll,radius,0,Math.PI*2,true); // Outer circle
+                    ctx.fill();
+                }
             }
+
 
 
             if (ProgramManager.renderManager.isPointInRect([inputManager.mouse.x, inputManager.mouse.y], [(nodes[i].posX + this.delta.x) * this.scroll, (nodes[i].posY + this.delta.y) * this.scroll, 20 * this.scroll, 20 * this.scroll])) {
@@ -58,7 +66,14 @@ class Main extends Scene {
                 ctx.fillStyle = 'rgb(50, 110, 220)';
             }
 
-            ctx.fillRect((nodes[i].posX + this.delta.x) * this.scroll, (nodes[i].posY + this.delta.y) * this.scroll, 20 * this.scroll, 20 * this.scroll);
+            if (this.nodeStyle === "rect") {
+                ctx.fillRect((nodes[i].posX + this.delta.x) * this.scroll, (nodes[i].posY + this.delta.y) * this.scroll, 20 * this.scroll, 20 * this.scroll);
+            } else if (this.nodeStyle === "circle") {
+                let radius = 10;
+                ctx.beginPath();
+                ctx.arc((nodes[i].posX + this.delta.x - 2 + radius)  * this.scroll, (nodes[i].posY + this.delta.y - 2 + radius) * this.scroll,radius,0,Math.PI*2,true); // Outer circle
+                ctx.fill();
+            }
         }
     }
 
@@ -71,8 +86,11 @@ class Main extends Scene {
             let nodeA = this.graph.getNodeFromId(edges[i].firstNodeId);
             let nodeB = this.graph.getNodeFromId(edges[i].secondNodeId);
             ctx.beginPath();
-            ctx.moveTo((nodeA.posX + this.delta.x + 12.5) * this.scroll, (nodeA.posY + this.delta.y + 12.5) * this.scroll);
-            ctx.lineTo((nodeB.posX + this.delta.x + 12.5) * this.scroll, (nodeB.posY + this.delta.y + 12.5) * this.scroll);
+            let deltaPosition;
+            if (this.nodeStyle === "rect") deltaPosition = 12.5;
+            else if (this.nodeStyle === "circle") deltaPosition = 10;
+            ctx.moveTo((nodeA.posX + this.delta.x + deltaPosition) * this.scroll, (nodeA.posY + this.delta.y + deltaPosition) * this.scroll);
+            ctx.lineTo((nodeB.posX + this.delta.x + deltaPosition) * this.scroll, (nodeB.posY + this.delta.y + deltaPosition) * this.scroll);
             ctx.stroke();
         }
     }
@@ -107,7 +125,7 @@ class Main extends Scene {
     }
 
     isMouseInArea() {
-        if (ProgramManager.renderManager.isMouseInRect([0, 64, ProgramManager.scenes.main.sidebar.positionX, canvas.height - 64])) {
+        if (ProgramManager.renderManager.isMouseInRect([0, 32, ProgramManager.scenes.main.sidebar.positionX, canvas.height - 64])) {
             return true;
         } else return false;
     }

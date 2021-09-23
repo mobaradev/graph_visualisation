@@ -22,6 +22,10 @@
     <list default="true" id="cb0deacb-7654-415a-8544-08a5c3f4fcb0" name="Default Changelist" comment="Added max and min degree to info panel and possibility to move camera using keys WASD">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scripts/scenes/main/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/scenes/main/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/scenes/main/panel.js" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/scenes/main/panel.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/scenes/main/panelButton.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/scenes/main/sidebar.js" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/scenes/main/sidebar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/scenes/main/sidepanel.js" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/scenes/main/sidepanel.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,7 +53,9 @@
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -82,6 +88,7 @@
       <workItem from="1624455596104" duration="5229000" />
       <workItem from="1624482031192" duration="13281000" />
       <workItem from="1624525578414" duration="4975000" />
+      <workItem from="1632400274483" duration="1823000" />
     </task>
     <task id="LOCAL-00001" summary="Panel buttons sketch added">
       <created>1624051903879</created>

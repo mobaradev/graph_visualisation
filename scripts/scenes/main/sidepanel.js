@@ -29,9 +29,9 @@ class Sidepanel {
 
     render() {
         this.positionX = ProgramManager.scenes.main.sidebar.positionX + ProgramManager.scenes.main.sidebar.width;
-        this.positionY = 64;
+        this.positionY = 32;
         ctx.fillStyle = '#a3a0a0';
-        ctx.fillRect(this.positionX, 64, this.width, this.height);
+        ctx.fillRect(this.positionX, 32, this.width, this.height);
 
         // render content
         this.contentSelected.render();
@@ -210,7 +210,7 @@ class SidepanelAbout extends SidepanelContent {
         ctx.font = "bold 16px Arial";
         ctx.fillStyle = "black";
         ctx.textAlign = "left";
-        ctx.fillText("Version 0.61", ProgramManager.scenes.main.sidepanel.positionX + 20, ProgramManager.scenes.main.sidepanel.positionY + 220);
+        ctx.fillText("Version 0.7", ProgramManager.scenes.main.sidepanel.positionX + 20, ProgramManager.scenes.main.sidepanel.positionY + 220);
 
         ctx.font = "15px Arial";
         ctx.mlFillText("Opened in " + navigator.userAgent + "\n\n Width: " + canvas.width + "\n Height: " + canvas.height, ProgramManager.scenes.main.sidepanel.positionX + 20, ProgramManager.scenes.main.sidepanel.positionY + 240, 350 - 40, 200, 'top', 'justify', 16);

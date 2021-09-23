@@ -29,7 +29,7 @@ class Panel {
 
     render() {
         ctx.fillStyle = 'silver';
-        ctx.fillRect(0, 0, canvas.width, 64);
+        ctx.fillRect(0, 0, canvas.width, 32);
 
         for (let i = 0; i < this.buttons.length; i++) {
             this.buttons[i].render();
@@ -75,18 +75,17 @@ class PanelButton {
             else ctx.fillStyle = 'silver';
         }
 
-        ctx.fillRect(this.positionX, 0,82, 64);
-        //ctx.drawImage(this.img, positionX, 0, 64, 64)
+        ctx.fillRect(this.positionX, 0,82, 32);
 
         // text
         ctx.font = "12px Arial";
         ctx.fillStyle = "black";
         ctx.textAlign = "center";
-        ctx.fillText(this.name, this.positionX + 82/2, 64 - 10);
+        ctx.fillText(this.name, this.positionX + 82/2, 32 - 10);
     }
 
     isMouseOverButton() {
-        return ProgramManager.renderManager.isMouseInRect([this.positionX, 0,82, 64]);
+        return ProgramManager.renderManager.isMouseInRect([this.positionX, 0,82, 32]);
     }
 
     onClickAction() {

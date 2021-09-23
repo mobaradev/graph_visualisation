@@ -39,7 +39,7 @@ class Sidebar {
         } else this.positionX = canvas.width - 72;
 
         ctx.fillStyle = 'silver';
-        ctx.fillRect(this.positionX, 64, this.width, this.height);
+        ctx.fillRect(this.positionX, 32, this.width, this.height);
 
         for (let i = 0; i < this.buttons.length; i++) {
             this.buttons[i].render();
@@ -70,7 +70,7 @@ class SidebarButton {
     constructor(index) {
         this.index = index
         if (index >= 0) {
-            this.positionY = (index + 1) * 64;
+            this.positionY = 32 + (index + 0) * 64;
         } else {
             this.positionY = canvas.height - (64 * Math.abs(this.index));
         }
